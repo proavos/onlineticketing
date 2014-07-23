@@ -1,4 +1,4 @@
 onlineticketing
 ===============
 
-Online Bus Ticketing System for Interns Training
+Online Bus Ticketing System for Interns' Training
