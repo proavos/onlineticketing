@@ -1,0 +1,14 @@
+<datasource jta="true" jndi-name="java:/onlineTicketingDS" pool-name="MySQLDS2" enabled="true" use-java-context="true" use-ccm="true">
+    <connection-url>jdbc:mysql://192.168.1.25/onlinetkt</connection-url>
+    <driver>mysql</driver>
+    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+    <pool>
+        <prefill>true</prefill>
+        <use-strict-min>false</use-strict-min>
+        <flush-strategy>FailingConnectionOnly</flush-strategy>
+    </pool>
+    <security>
+        <user-name>appuser</user-name>
+        <password>password</password>
+    </security>
+</datasource>
