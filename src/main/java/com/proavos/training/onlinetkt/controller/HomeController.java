@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.proavos.training.onlinetkt.service.SearchAndBookService;
 
 @Controller
-@RequestMapping({"/home"})
+@RequestMapping({"/home","/"})
 public class HomeController {
 
 	private static final String HOME_VIEW = "home";

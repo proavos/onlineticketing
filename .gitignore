@@ -1,0 +1,37 @@
+*~
+*.swp
+target
+test-output
+.openshift
+.gitkeep
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+#eclipse genetated files
+.project
+.settings
+.classpath
+.metadata
+.buildpath
+.springBeans
+
+
+#idea generated files
+.idea
+*.ipr
+*.iws
+*.iml
+
+#igonre css files 
+agent/src/main/webapp/theme/css/blue/common/*.css
+agent/src/main/webapp/theme/css/gold/common/*.css
+agent/src/main/webapp/theme/common/*.css
+
+#ignore wsbe schema genarated sources
+wsbe/generated/
+
+#ignore jira plugin
+atlassian-ide-plugin.xml
