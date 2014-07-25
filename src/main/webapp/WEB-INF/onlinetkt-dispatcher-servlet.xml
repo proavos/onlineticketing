@@ -23,4 +23,15 @@
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- i18N bean Resolver -->
+    <bean id="localeResolver" class="com.proavos.training.onlinetkt.common.LocalResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
+
+    <!-- Register the messages.properties -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="i18n/messages"/>
+    </bean>
+
 </beans>

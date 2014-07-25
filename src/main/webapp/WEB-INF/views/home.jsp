@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Welcome to the Online Ticketing</title>
@@ -40,11 +41,23 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">SERVICE & ROUTES</a></li>
-                <li><a href="#">DEALS & DISCOUNTS</a></li>
-                <li><a href="#">TICKET & TRAVEL INFO</a></li>
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="#"><s:message code="menu.home"/></a></li>
+                <li><a href="#"><s:message code="menu.service.route"/></a></li>
+                <li><a href="#"><s:message code="menu.deal.discount"/></a></li>
+                <li><a href="#"><s:message code="menu.ticket.travel"/></a></li>
+                <li><a href="#"><s:message code="menu.contact.us"/></a></li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <c:if test="${sessionScope.language != 'si'}">
+                    <li><a href="<c:url value="/si/home" />"><img
+                            src="<c:url value="/images/sinhala.png" />"></a></li>
+                </c:if>
+                <c:if test="${sessionScope.language == 'si'}">
+                <li><a href="<c:url value="/en/home" />"><img
+                        src="<c:url value="/images/english.png" />"></a></li>
+                </c:if>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -53,7 +66,7 @@
 </nav>
 <div class="jumbotron">
     <div class="container">
-        <h1>Fast Booking!</h1>
+        <h1><s:message code="header.main.heading"/></h1>
 
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a
             jumbotron and three supporting pieces of content. Use it as a starting point to create something more
