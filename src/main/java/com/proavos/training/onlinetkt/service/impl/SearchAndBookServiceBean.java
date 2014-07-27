@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import com.proavos.training.onlinetkt.common.ApplicationException;
 import com.proavos.training.onlinetkt.dao.SearchAndBookDAO;
 import com.proavos.training.onlinetkt.dto.BookBusRequestDTO;
 import com.proavos.training.onlinetkt.dto.BookBusResponseDTO;
@@ -38,7 +39,9 @@ public class SearchAndBookServiceBean implements SearchAndBookServiceRemote, Sea
 	}
 
 	@Override
-	public BookBusResponseDTO bookBus(BookBusRequestDTO bookBusRequestDTO) {
+	public BookBusResponseDTO bookBus(BookBusRequestDTO bookBusRequestDTO) throws ApplicationException {
+		// TODO: validate request data including price
+		// TODO: process payment
 		return searchAndBookDAO.bookBus(bookBusRequestDTO);
 	}
 }

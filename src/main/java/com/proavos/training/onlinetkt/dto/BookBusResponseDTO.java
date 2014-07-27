@@ -117,4 +117,24 @@ public class BookBusResponseDTO implements Serializable {
 	public void setVersion(Long version) {
 		this.version = version;
 	}
+
+	@Override
+	public String toString(){
+		StringBuilder state = new StringBuilder();
+		state.append("bookingId=").append(getBookId());
+		state.append("|busId=").append(getBusDetails().getBusId());
+		state.append("|fromCity=").append(getBusDetails().getFromCity());
+		state.append("|toCity=").append(getBusDetails().getToCity());
+		state.append("|depDateTime=").append(getBusDetails().getDepartureDateTime());
+		state.append("|bookingRef=").append(getBookingReference());
+		state.append("|totalPax=").append(getNoOfPassengers());
+		state.append("|totalPrice=").append(getTotalPrice());
+		state.append("|totalPaid=").append(totalPaid);
+		state.append("|status=").append(getBookingStatus());
+		state.append("|contactName=").append(getContactPerson());
+		state.append("|contactPhone=").append(getContactPhone());
+		state.append("|bookedTimestamp=").append(getBookedDateTime());
+
+		return state.toString();
+	}
 }

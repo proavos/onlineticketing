@@ -2,6 +2,7 @@ package com.proavos.training.onlinetkt.dao;
 
 import java.util.List;
 
+import com.proavos.training.onlinetkt.common.ApplicationException;
 import com.proavos.training.onlinetkt.dto.BookBusRequestDTO;
 import com.proavos.training.onlinetkt.dto.BookBusResponseDTO;
 import com.proavos.training.onlinetkt.dto.SearchBusRequestDTO;
@@ -14,5 +15,5 @@ public interface SearchAndBookDAO {
 
 	public SearchBusResponseDTO searchBusAvailability(SearchBusRequestDTO searchBusRequestDTO);
 
-	public BookBusResponseDTO bookBus(BookBusRequestDTO bookBusRequestDTO);
+	public BookBusResponseDTO bookBus(BookBusRequestDTO bookBusRequestDTO) throws ApplicationException;
 }
