@@ -8,7 +8,11 @@ public class BusDTO implements Serializable {
 
 	private Long busId;
 
+	private Long fromCityId;
+
 	private String fromCity;
+
+	private Long toCityId;
 
 	private String toCity;
 
@@ -30,12 +34,28 @@ public class BusDTO implements Serializable {
 		this.busId = busId;
 	}
 
+	public Long getFromCityId() {
+		return fromCityId;
+	}
+
+	public void setFromCityId(Long fromCityId) {
+		this.fromCityId = fromCityId;
+	}
+
 	public String getFromCity() {
 		return fromCity;
 	}
 
 	public void setFromCity(String fromCity) {
 		this.fromCity = fromCity;
+	}
+
+	public Long getToCityId() {
+		return toCityId;
+	}
+
+	public void setToCityId(Long toCityId) {
+		this.toCityId = toCityId;
 	}
 
 	public String getToCity() {
@@ -84,5 +104,16 @@ public class BusDTO implements Serializable {
 
 	public void setAvailable(Boolean available) {
 		this.available = available;
+	}
+
+	@Override
+	public String toString(){
+		StringBuilder state = new StringBuilder();
+		state.append("busId=").append(getBusId());
+		state.append("|fromCity=").append(getFromCity());
+		state.append("|toCity=").append(getToCity());
+		state.append("|available=").append(getAvailable());
+		state.append("|depDateTime=").append(getDepartureDateTime());
+		return state.toString();
 	}
 }

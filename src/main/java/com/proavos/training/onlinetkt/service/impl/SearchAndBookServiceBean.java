@@ -7,6 +7,10 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.proavos.training.onlinetkt.dao.SearchAndBookDAO;
+import com.proavos.training.onlinetkt.dto.BookBusRequestDTO;
+import com.proavos.training.onlinetkt.dto.BookBusResponseDTO;
+import com.proavos.training.onlinetkt.dto.SearchBusRequestDTO;
+import com.proavos.training.onlinetkt.dto.SearchBusResponseDTO;
 import com.proavos.training.onlinetkt.model.City;
 import com.proavos.training.onlinetkt.service.SearchAndBookServiceLocal;
 import com.proavos.training.onlinetkt.service.SearchAndBookServiceRemote;
@@ -20,12 +24,21 @@ public class SearchAndBookServiceBean implements SearchAndBookServiceRemote, Sea
 	@Override
 	public String echo(String requestMessage) {
         StringBuffer sb = new StringBuffer(requestMessage).append(" [").append(new Date()).append("]");
-
-		List<City> cities = searchAndBookDAO.getAllActiveCities();
-		if (cities != null) {
-			System.out.println("No of cities found = " + cities.size());
-		}
-
         return sb.toString();
+	}
+
+	@Override
+	public List<City> getAllActiveCities() {
+		return searchAndBookDAO.getAllActiveCities();
+	}
+
+	@Override
+	public SearchBusResponseDTO searchBusAvailability(SearchBusRequestDTO searchBusRequestDTO) {
+		return searchAndBookDAO.searchBusAvailability(searchBusRequestDTO);
+	}
+
+	@Override
+	public BookBusResponseDTO bookBus(BookBusRequestDTO bookBusRequestDTO) {
+		return searchAndBookDAO.bookBus(bookBusRequestDTO);
 	}
 }
