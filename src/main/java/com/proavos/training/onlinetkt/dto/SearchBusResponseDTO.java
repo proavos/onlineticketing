@@ -6,7 +6,17 @@ import java.util.List;
 
 public class SearchBusResponseDTO implements Serializable {
 
+	private Integer noOfPassengers;
+
 	private List<BusDTO> availableBusList = new ArrayList<>();
+
+	public Integer getNoOfPassengers() {
+		return noOfPassengers;
+	}
+
+	public void setNoOfPassengers(Integer noOfPassengers) {
+		this.noOfPassengers = noOfPassengers;
+	}
 
 	public List<BusDTO> getAvailableBusList() {
 		return availableBusList;
@@ -16,7 +26,7 @@ public class SearchBusResponseDTO implements Serializable {
 		this.availableBusList = availableBusList;
 	}
 
-	public void addAvailableBus(BusDTO busDTO){
+	public void addAvailableBus(BusDTO busDTO) {
 		availableBusList.add(busDTO);
 	}
 }

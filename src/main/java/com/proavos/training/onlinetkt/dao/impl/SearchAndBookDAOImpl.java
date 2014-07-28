@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
 import javax.persistence.LockModeType;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -31,7 +30,6 @@ import com.proavos.training.onlinetkt.model.Booking;
 import com.proavos.training.onlinetkt.model.City;
 import com.proavos.training.onlinetkt.model.Inventory;
 
-@Named
 @ApplicationScoped
 public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBookDAO {
 
@@ -59,28 +57,30 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 
 		// SQL query
 		StringBuilder querySB = new StringBuilder();
-		querySB.append("select a.bus_id, a.from_city_id, c.city_name from_city_name, " );
-		querySB.append("    a.to_city_id, d.city_name to_city_name, a.route_code, " );
-		querySB.append("    a.dep_datetime, a.arr_datetime, a.ticket_price, b.seats_available " );
-		querySB.append("from " );
-		querySB.append("    TBL_BUS a, " );
-		querySB.append("    TBL_INVENTORY b, " );
-		querySB.append("    TBL_CITY c, " );
-		querySB.append("    TBL_CITY d " );
-		querySB.append("where " );
-		querySB.append("    a.bus_id = b.bus_id " );
-		querySB.append("    and a.from_city_id = c.city_id " );
-		querySB.append("    and a.to_city_id = d.city_id " );
-		querySB.append("    and a.from_city_id = :fromCityId " );
-		querySB.append("    and a.to_city_id = :toCityId " );
-		querySB.append("    and date(a.dep_datetime) = :depDate " );
+		querySB.append("select a.bus_id, a.from_city_id, c.city_name from_city_name, ");
+		querySB.append("    a.to_city_id, d.city_name to_city_name, a.route_code, ");
+		querySB.append("    a.dep_datetime, a.arr_datetime, a.ticket_price, b.seats_available ");
+		querySB.append("from ");
+		querySB.append("    TBL_BUS a, ");
+		querySB.append("    TBL_INVENTORY b, ");
+		querySB.append("    TBL_CITY c, ");
+		querySB.append("    TBL_CITY d ");
+		querySB.append("where ");
+		querySB.append("    a.bus_id = b.bus_id ");
+		querySB.append("    and a.from_city_id = c.city_id ");
+		querySB.append("    and a.to_city_id = d.city_id ");
+		querySB.append("    and a.from_city_id = :fromCityId ");
+		querySB.append("    and a.to_city_id = :toCityId ");
+		querySB.append("    and date(a.dep_datetime) >= :depDateFrom ");
+		querySB.append("    and date(a.dep_datetime) <= :depDateTo ");
 		querySB.append("    and a.status = 'ACT';");
 
 		// Query parameters
 		MapSqlParameterSource queryParams = new MapSqlParameterSource();
 		queryParams.addValue("fromCityId", searchBusRequestDTO.getFromCityId(), Types.INTEGER);
 		queryParams.addValue("toCityId", searchBusRequestDTO.getToCityId(), Types.INTEGER);
-		queryParams.addValue("depDate", searchBusRequestDTO.getDepatureDate(), Types.DATE);
+		queryParams.addValue("depDateFrom", searchBusRequestDTO.getDepartureFromDate(), Types.DATE);
+		queryParams.addValue("depDateTo", searchBusRequestDTO.getDepartureToDate(), Types.DATE);
 
 		RowMapper<BusDTO> rowMapper = new RowMapper<BusDTO>() {
 			public BusDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -94,14 +94,14 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 				busDTO.setDepartureDateTime(rs.getTimestamp("dep_datetime"));
 				busDTO.setArrivalDateTime(rs.getTimestamp("arr_datetime"));
 				busDTO.setPerPassengerPrice(rs.getBigDecimal("ticket_price"));
-				busDTO.setAvailable(rs.getInt("seats_available")>=
-					searchBusRequestDTO.getNoOfPassengers() ? true : false);
+				busDTO.setAvailable(rs.getInt("seats_available") >=
+					                    searchBusRequestDTO.getNoOfPassengers() ? true : false);
 				return busDTO;
 			}
 		};
 
 		List<BusDTO> availableBuses = getNamedParameterJdbcTemplate().query(querySB.toString(), queryParams, rowMapper);
-		if (availableBuses != null){
+		if (availableBuses != null) {
 			searchBusResponseDTO.setAvailableBusList(availableBuses);
 		}
 		return searchBusResponseDTO;
@@ -117,7 +117,7 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 		query.setHint("javax.persistence.lock.timeout", "10000"); // lock timeout in ms
 		Inventory inventory = query.getSingleResult();
 
-		if (inventory.getSeatsAvailable() < bookBusRequestDTO.getNoOfPassengers()){
+		if (inventory.getSeatsAvailable() < bookBusRequestDTO.getNoOfPassengers()) {
 			throw new ApplicationException("Not enough seats available");
 		}
 
@@ -127,7 +127,8 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 
 		// Create booking
 		Booking booking = new Booking();
-		booking.setBookingReference(RandomStringUtils.randomAlphanumeric(6).toUpperCase()); //TODO: validate if already used
+		booking.setBookingReference(
+			RandomStringUtils.randomAlphanumeric(6).toUpperCase()); //TODO: validate if already used
 		booking.setBookedDateTime(new Date());
 		booking.setBusId(bookBusRequestDTO.getBusId());
 		booking.setBookedSeats(bookBusRequestDTO.getNoOfPassengers());
@@ -135,7 +136,7 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 		booking.setContactPhone(bookBusRequestDTO.getContactPhone());
 		booking.setTotalPrice(bookBusRequestDTO.getTotalPrice());
 
-		if (bookBusRequestDTO.getPayNow()){
+		if (bookBusRequestDTO.getPayNow()) {
 			booking.setTotalPaid(bookBusRequestDTO.getCardPaymentDetails().getTotalAmountPaid());
 			booking.setStatus(Constants.BookingStatus.CNF);
 		} else {
@@ -164,19 +165,19 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 
 		// SQL query
 		StringBuilder querySB = new StringBuilder();
-		querySB.append("select a.bus_id, a.from_city_id, c.city_name from_city_name, " );
-		querySB.append("    a.to_city_id, d.city_name to_city_name, a.route_code, " );
-		querySB.append("    a.dep_datetime, a.arr_datetime, a.ticket_price, b.seats_available " );
-		querySB.append("from " );
-		querySB.append("    TBL_BUS a, " );
-		querySB.append("    TBL_INVENTORY b, " );
-		querySB.append("    TBL_CITY c, " );
-		querySB.append("    TBL_CITY d " );
-		querySB.append("where " );
-		querySB.append("    a.bus_id = b.bus_id " );
-		querySB.append("    and a.from_city_id = c.city_id " );
-		querySB.append("    and a.to_city_id = d.city_id " );
-		querySB.append("    and a.bus_Id = :busId " );
+		querySB.append("select a.bus_id, a.from_city_id, c.city_name from_city_name, ");
+		querySB.append("    a.to_city_id, d.city_name to_city_name, a.route_code, ");
+		querySB.append("    a.dep_datetime, a.arr_datetime, a.ticket_price, b.seats_available ");
+		querySB.append("from ");
+		querySB.append("    TBL_BUS a, ");
+		querySB.append("    TBL_INVENTORY b, ");
+		querySB.append("    TBL_CITY c, ");
+		querySB.append("    TBL_CITY d ");
+		querySB.append("where ");
+		querySB.append("    a.bus_id = b.bus_id ");
+		querySB.append("    and a.from_city_id = c.city_id ");
+		querySB.append("    and a.to_city_id = d.city_id ");
+		querySB.append("    and a.bus_Id = :busId ");
 
 		// Query parameters
 		MapSqlParameterSource queryParams = new MapSqlParameterSource();
@@ -194,7 +195,7 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 				busDTO.setDepartureDateTime(rs.getTimestamp("dep_datetime"));
 				busDTO.setArrivalDateTime(rs.getTimestamp("arr_datetime"));
 				busDTO.setPerPassengerPrice(rs.getBigDecimal("ticket_price"));
-				busDTO.setAvailable(rs.getInt("seats_available")>= 0 ? true : false);
+				busDTO.setAvailable(rs.getInt("seats_available") >= 0 ? true : false);
 				return busDTO;
 			}
 		};

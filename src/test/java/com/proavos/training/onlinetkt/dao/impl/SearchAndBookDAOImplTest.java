@@ -45,7 +45,7 @@ public class SearchAndBookDAOImplTest extends AbstractTransactionalTestNGSpringC
 		calendar.set(Calendar.YEAR, 2014);
 		calendar.set(Calendar.MONTH, Calendar.AUGUST);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
-		searchBusRequestDTO.setDepatureDate(calendar.getTime());
+		searchBusRequestDTO.setDepartureFromDate(calendar.getTime());
 
 		SearchBusResponseDTO response = searchAndBookDAO.searchBusAvailability(searchBusRequestDTO);
 		Assert.isTrue(response.getAvailableBusList().size()>0, "Empty response returned");

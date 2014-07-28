@@ -9,7 +9,11 @@ public class SearchBusRequestDTO implements Serializable {
 
 	private Long toCityId;
 
-	private Date depatureDate;
+	private Date departureFromDate;
+
+	private Date departureToDate;
+
+	private String departureDateStr;
 
 	private Integer noOfPassengers;
 
@@ -29,12 +33,28 @@ public class SearchBusRequestDTO implements Serializable {
 		this.toCityId = toCityId;
 	}
 
-	public Date getDepatureDate() {
-		return depatureDate;
+	public Date getDepartureFromDate() {
+		return departureFromDate;
 	}
 
-	public void setDepatureDate(Date depatureDate) {
-		this.depatureDate = depatureDate;
+	public Date getDepartureToDate() {
+		return departureToDate;
+	}
+
+	public void setDepartureToDate(Date departureToDate) {
+		this.departureToDate = departureToDate;
+	}
+
+	public String getDepartureDateStr() {
+		return departureDateStr;
+	}
+
+	public void setDepartureDateStr(String departureDateStr) {
+		this.departureDateStr = departureDateStr;
+	}
+
+	public void setDepartureFromDate(Date departureFromDate) {
+		this.departureFromDate = departureFromDate;
 	}
 
 	public Integer getNoOfPassengers() {

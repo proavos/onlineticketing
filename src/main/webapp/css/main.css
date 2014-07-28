@@ -2,3 +2,14 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+
+.jumbotron {
+    background: #000 url(../images/header_banner.png) no-repeat center top;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.banner {
+    background: url(../images/banner.png) no-repeat  top right;
+    height: 300px;
+}
