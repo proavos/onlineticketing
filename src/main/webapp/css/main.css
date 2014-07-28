@@ -10,6 +10,14 @@ body {
 }
 
 .banner {
-    background: url(../images/banner.png) no-repeat  top right;
+    background: url(../images/banner.png) no-repeat top right;
     height: 300px;
+}
+
+.language {
+    background: transparent;
+    outline: 0;
+    border: none;
+    margin-top: 10px;
+    margin-right: 10px;
 }

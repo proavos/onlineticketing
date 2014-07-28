@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -19,11 +19,11 @@ public class LanguageController {
 
 	private static final String HOME_VIEW = "home";
 
-	@RequestMapping(value = "/{languageCode}/home", method = RequestMethod.GET)
-	public ModelAndView handleHomePage(HttpServletRequest request, @PathVariable String languageCode) {
+	@RequestMapping(value = "/home", method = RequestMethod.POST)
+	public ModelAndView handleHomePage(HttpServletRequest request, @RequestParam String language) {
 		ModelAndView homeModelAndView = new ModelAndView(HOME_VIEW);
 		HttpSession session = request.getSession();
-		session.setAttribute(SELECTED_LANGUAGE, languageCode);
+		session.setAttribute(SELECTED_LANGUAGE, language);
 		return homeModelAndView;
 	}
 }

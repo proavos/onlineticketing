@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="#"><s:message code="menu.home"/></a></li>
+                <li><a href="<c:url value="/home" />"><s:message code="menu.home"/></a></li>
                 <li><a href="#"><s:message code="menu.service.route"/></a></li>
                 <li><a href="#"><s:message code="menu.deal.discount"/></a></li>
                 <li><a href="#"><s:message code="menu.ticket.travel"/></a></li>
@@ -62,12 +62,25 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${sessionScope.language != 'si'}">
-                    <li><a href="<c:url value="/si/home" />"><img
-                            src="<c:url value="/images/sinhala.png" />"></a></li>
+                    <li>
+                        <form method="post" role="form" action="<c:url value="/home" />">
+                            <input class="form-control" type="hidden" name="language" value="si"/>
+
+                            <button type="submit" class="language"><img
+                                    src="<c:url value="/images/sinhala.png" />"></button>
+                        </form>
+
+                    </li>
                 </c:if>
                 <c:if test="${sessionScope.language == 'si'}">
-                    <li><a href="<c:url value="/en/home" />"><img
-                            src="<c:url value="/images/english.png" />"></a></li>
+                    <li>
+                        <form method="post" role="form" action="<c:url value="/home" />">
+                            <input class="form-control" type="hidden" name="language" value="en"/>
+
+                            <button class="language" type="submit"><img
+                                    src="<c:url value="/images/english.png" />"></button>
+                        </form>
+                    </li>
                 </c:if>
             </ul>
         </div>
