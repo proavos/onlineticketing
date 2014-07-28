@@ -25,13 +25,5 @@ test-output
 *.iws
 *.iml
 
-#igonre css files 
-agent/src/main/webapp/theme/css/blue/common/*.css
-agent/src/main/webapp/theme/css/gold/common/*.css
-agent/src/main/webapp/theme/common/*.css
-
-#ignore wsbe schema genarated sources
-wsbe/generated/
-
 #ignore jira plugin
 atlassian-ide-plugin.xml

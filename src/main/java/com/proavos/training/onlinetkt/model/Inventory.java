@@ -7,11 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.proavos.training.onlinetkt.common.Persistent;
-
 @Entity
 @Table(name = "TBL_INVENTORY")
-public class Inventory extends Persistent {
+public class Inventory {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)

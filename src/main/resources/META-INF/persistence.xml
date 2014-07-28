@@ -10,6 +10,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/onlineTicketingDS</jta-data-source>
         <class>com.proavos.training.onlinetkt.model.City</class>
+        <class>com.proavos.training.onlinetkt.model.Bus</class>
+        <class>com.proavos.training.onlinetkt.model.Inventory</class>
+        <class>com.proavos.training.onlinetkt.model.Booking</class>
         <properties>
             <!-- Properties for Hibernate -->
             <property name="hibernate.show_sql" value="true" />
