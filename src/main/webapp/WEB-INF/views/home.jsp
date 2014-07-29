@@ -8,31 +8,31 @@
                 jumbotron and three supporting pieces of content. Use it as a starting point to create something more
                 unique.</p>
 
-            <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" role="button"><s:message code="header.read.more"/> &raquo;</a></p>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-12">
-                <form method="post" role="form" action="<c:url value="/booking/search" />">
+                <form method="post" role="form" action="<c:url value="/booking/search" />"  data-parsley-validate>
                     <div class="form-group">
-                        <label for="searchCityFrom">From</label>
-                        <select name="fromCityId" class="form-control" id="searchCityFrom"></select>
+                        <label for="searchCityFrom"><s:message code="search.from"/></label>
+                        <select name="fromCityId" class="form-control" id="searchCityFrom" required ></select>
                     </div>
                     <div class="form-group">
-                        <label for="searchCityTo">To</label>
-                        <select name="toCityId" class="form-control" id="searchCityTo"></select>
+                        <label for="searchCityTo"><s:message code="search.to"/></label>
+                        <select name="toCityId" class="form-control" id="searchCityTo" required ></select>
                     </div>
                     <div class="form-group">
-                        <label for="searchDate">Date</label>
-                        <input name="departureDateStr" class="form-control" type="text" id="searchDate">
+                        <label for="searchDate"><s:message code="search.date"/></label>
+                        <input name="departureDateStr" class="form-control" type="text" id="searchDate" required  />
                     </div>
                     <div class="form-group">
-                        <label for="searchNoOfPax">Number Of Passengers</label>
-                        <input name="noOfPassengers" class="form-control" type="text" id="searchNoOfPax">
+                        <label for="searchNoOfPax"><s:message code="search.no.of.pax"/></label>
+                        <input name="noOfPassengers" class="form-control" type="text" id="searchNoOfPax"  required  />
                     </div>
-                    <button type="submit" class="btn btn-default">Search</button>
+                    <button type="submit" class="btn btn-default"><s:message code="search.search"/></button>
                 </form>
             </div>
             <div class="col-md-8  col-sm-12 banner">

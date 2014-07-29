@@ -17,6 +17,7 @@
     <%-- custom styles --%>
     <link rel="stylesheet" href="<c:url value="/css/datepicker.css" />">
     <link rel="stylesheet" href="<c:url value="/css/bootstrap-touchspin.css" />">
+    <link rel="stylesheet" href="<c:url value="/css/parsley.css" />">
     <link rel="stylesheet" href="<c:url value="/css/main.css" />">
 
     <!-- Latest compiled and minified JavaScript -->
@@ -27,6 +28,7 @@
 
     <%-- utility libs --%>
     <script src="<c:url value="/js/util/moment.js" />"></script>
+    <script src="<c:url value="/js/util/parsley.js" />"></script>
     <script src="<c:url value="/js/util/underscore.js" />"></script>
     <script src="<c:url value="/js/util/proavos.common.js" />"></script>
 

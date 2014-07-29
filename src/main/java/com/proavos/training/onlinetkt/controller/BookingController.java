@@ -88,9 +88,12 @@ public class BookingController {
 				bookBusRequestDTO.getCardPaymentDetails().setTotalAmountPaid(bookBusRequestDTO.getTotalPrice());
 			}
 			bookBusResponseDTO = searchAndBookService.bookBus(bookBusRequestDTO);
+			bookBusResponseDTO.setSuccess(true);
 			return bookBusResponseDTO;
 		} catch (ApplicationException e) {
 			e.printStackTrace();
+			bookBusResponseDTO.setSuccess(false);
+			bookBusResponseDTO.setMessage(e.getMessage());
 		}
 		return bookBusResponseDTO;
 	}

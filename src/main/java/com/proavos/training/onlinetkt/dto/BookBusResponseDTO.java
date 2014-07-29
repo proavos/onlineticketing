@@ -30,6 +30,10 @@ public class BookBusResponseDTO implements Serializable {
 
 	private Long version;
 
+	private Boolean success;
+
+	private String message;
+
 	public BusDTO getBusDetails() {
 		return busDetails;
 	}
@@ -64,6 +68,9 @@ public class BookBusResponseDTO implements Serializable {
 
 	public Constants.BookingStatus getBookingStatus() {
 		return bookingStatus;
+	}
+	public String getBookingStatusDesc() {
+		return bookingStatus.getDescription();
 	}
 
 	public void setBookingStatus(Constants.BookingStatus bookingStatus) {
@@ -118,8 +125,24 @@ public class BookBusResponseDTO implements Serializable {
 		this.version = version;
 	}
 
+	public Boolean getSuccess() {
+		return success;
+	}
+
+	public void setSuccess(Boolean success) {
+		this.success = success;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	@Override
-	public String toString(){
+	public String toString() {
 		StringBuilder state = new StringBuilder();
 		state.append("bookingId=").append(getBookId());
 		state.append("|busId=").append(getBusDetails().getBusId());
