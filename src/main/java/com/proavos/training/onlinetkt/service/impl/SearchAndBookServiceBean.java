@@ -10,6 +10,7 @@ import com.proavos.training.onlinetkt.common.ApplicationException;
 import com.proavos.training.onlinetkt.dao.SearchAndBookDAO;
 import com.proavos.training.onlinetkt.dto.BookBusRequestDTO;
 import com.proavos.training.onlinetkt.dto.BookBusResponseDTO;
+import com.proavos.training.onlinetkt.dto.BusDTO;
 import com.proavos.training.onlinetkt.dto.SearchBusRequestDTO;
 import com.proavos.training.onlinetkt.dto.SearchBusResponseDTO;
 import com.proavos.training.onlinetkt.model.City;
@@ -24,8 +25,8 @@ public class SearchAndBookServiceBean implements SearchAndBookServiceRemote, Sea
 
 	@Override
 	public String echo(String requestMessage) {
-        StringBuffer sb = new StringBuffer(requestMessage).append(" [").append(new Date()).append("]");
-        return sb.toString();
+		StringBuffer sb = new StringBuffer(requestMessage).append(" [").append(new Date()).append("]");
+		return sb.toString();
 	}
 
 	@Override
@@ -43,5 +44,10 @@ public class SearchAndBookServiceBean implements SearchAndBookServiceRemote, Sea
 		// TODO: validate request data including price
 		// TODO: process payment
 		return searchAndBookDAO.bookBus(bookBusRequestDTO);
+	}
+
+	@Override
+	public BusDTO getBusById(Long busID) {
+		return searchAndBookDAO.getBusById(busID);
 	}
 }

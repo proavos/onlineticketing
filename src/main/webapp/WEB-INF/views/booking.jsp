@@ -8,6 +8,38 @@
     <div id="frmBooking">
         <div class="book-form" class="book-form">
             <div class="row">
+                <div class="col-md-8 form-group">
+                    <div class="col-lg-3"><label>From</label></div>
+                    <div class="col-lg-3">
+                        <label>${bus.fromCity}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 form-group">
+                    <div class="col-lg-3"><label>To</label></div>
+                    <div class="col-lg-3">
+                        <label>${bus.toCity}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 form-group">
+                    <div class="col-lg-3"><label>Departure Date</label></div>
+                    <div class="col-lg-3">
+                        <label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${bus.departureDateTime}"/></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 form-group">
+                    <div class="col-lg-3"><label>Arrival Date</label></div>
+                    <div class="col-lg-3">
+                        <label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${bus.arrivalDateTime}"/></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-danger hidden" id="errorMessage" role="alert">
 
@@ -94,6 +126,38 @@
         </div>
         <div class="row">
             <div class="col-md-8 form-group">
+                <div class="col-lg-3"><label>From</label></div>
+                <div class="col-lg-3">
+                    <label id="lblFrom"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 form-group">
+                <div class="col-lg-3"><label>To</label></div>
+                <div class="col-lg-3">
+                    <label id="lblTo"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 form-group">
+                <div class="col-lg-3"><label>Departure Date</label></div>
+                <div class="col-lg-3">
+                    <label id="lblDepartureDate"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 form-group">
+                <div class="col-lg-3"><label>Arrival Date</label></div>
+                <div class="col-lg-3">
+                    <label id="lblArrivalDate"></label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 form-group">
                 <div class="col-lg-3"><label>Booked Date</label></div>
                 <div class="col-lg-3">
                     <label id="lblBookedDateTime"></label>
@@ -132,38 +196,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8 form-group">
-                <div class="col-lg-3"><label>From</label></div>
-                <div class="col-lg-3">
-                    <label id="lblFrom"></label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 form-group">
-                <div class="col-lg-3"><label>To</label></div>
-                <div class="col-lg-3">
-                    <label id="lblTo"></label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 form-group">
-                <div class="col-lg-3"><label>Departure Date</label></div>
-                <div class="col-lg-3">
-                    <label id="lblDepartureDate"></label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 form-group">
-                <div class="col-lg-3"><label>Arrival Date</label></div>
-                <div class="col-lg-3">
-                    <label id="lblArrivalDate"></label>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 

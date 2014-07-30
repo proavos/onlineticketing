@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.proavos.training.onlinetkt.common.ApplicationException;
 import com.proavos.training.onlinetkt.dto.BookBusRequestDTO;
 import com.proavos.training.onlinetkt.dto.BookBusResponseDTO;
+import com.proavos.training.onlinetkt.dto.BusDTO;
 import com.proavos.training.onlinetkt.dto.SearchBusRequestDTO;
 import com.proavos.training.onlinetkt.dto.SearchBusResponseDTO;
 import com.proavos.training.onlinetkt.service.SearchAndBookService;
@@ -40,9 +41,12 @@ public class BookingController {
 	                                    @RequestParam BigDecimal price,
 	                                    @RequestParam Integer noOfPax) {
 		ModelAndView bookingModelAndView = new ModelAndView(BOOKING_VIEW);
+		BusDTO bus = searchAndBookService.getBusById(busId.longValue());
 		bookingModelAndView.addObject("busId", busId);
 		bookingModelAndView.addObject("noOfPax", noOfPax);
 		bookingModelAndView.addObject("price", price);
+		bookingModelAndView.addObject("bus", bus);
+
 		return bookingModelAndView;
 	}
 

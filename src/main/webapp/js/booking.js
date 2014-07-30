@@ -67,9 +67,10 @@ PROAVOS.module.booking = function() {
 	return {
 		init : function() {
 			$(document).on('click', "#btnBook", reserveSeat);
-			$(document).on('click', "#sltPaymentOption", changePaymentMethod);
+			$(document).on('change', "#sltPaymentOption", changePaymentMethod);
 			$(document).on('submit', "#frmBooking", formSubmit);
 
+			$("#sltPaymentOption").val('PAYLATER').trigger('change');
 		}
 	}
 }();

@@ -161,7 +161,7 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 		return responseDTO;
 	}
 
-	private BusDTO getBusById(final Long busId) {
+	public BusDTO getBusById(final Long busId) {
 
 		// SQL query
 		StringBuilder querySB = new StringBuilder();
@@ -202,4 +202,5 @@ public class SearchAndBookDAOImpl extends BaseJPADAOImpl implements SearchAndBoo
 
 		return getNamedParameterJdbcTemplate().queryForObject(querySB.toString(), queryParams, rowMapper);
 	}
+
 }
